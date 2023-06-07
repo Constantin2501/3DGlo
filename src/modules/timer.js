@@ -18,13 +18,20 @@ const timer = (deadline) => {
         return {timeRemaining, days, hourse, minutes, seconds}
     }
 
+    const addZero = (num) => {
+        if (num <= 9) {
+            return '0' + num
+        }
+        return num
+    }
+
     const updateClock = () => {
         let getTime = getTimeRemaining()
 
-        timeDays.textContent = getTime.days
-        timeHours.textContent = getTime.hourse
-        timeMinutes.textContent = getTime.minutes
-        timeSeconds.textContent = getTime.seconds
+        timeDays.textContent = addZero(getTime.days)
+        timeHours.textContent = addZero(getTime.hourse)
+        timeMinutes.textContent = addZero(getTime.minutes)
+        timeSeconds.textContent = addZero(getTime.seconds)
 
         if(getTime.timeRemaining > 0) {
             setTimeout(updateClock, 1000)
