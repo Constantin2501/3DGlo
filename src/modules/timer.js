@@ -20,26 +20,29 @@ const timer = (deadline) => {
 
     const addZero = (num) => {
         if (num <= 9) {
-            return '0' + num
+            num = '0' + num
         } 
-
+        return num
     }
 
     const updateClock = () => {
+        let idTimeOut
+        let getTime = getTimeRemaining()
+
+        timeDays.textContent = addZero(getTime.days)
+        timeHours.textContent = addZero(getTime.hourse)
+        timeMinutes.textContent = addZero(getTime.minutes)
+        timeSeconds.textContent = addZero(getTime.seconds)
 
         if (getTime.timeRemaining > 0) {
-
-            let getTime = getTimeRemaining()
-
-            timeDays.textContent = addZero(getTime.days)
-            timeHours.textContent = addZero(getTime.hourse)
-            timeMinutes.textContent = addZero(getTime.minutes)
-            timeSeconds.textContent = addZero(getTime.seconds)
-
-            if(getTime.timeRemaining > 0) {
-                setTimeout(updateClock, 1000)
-            }
+            idTimeOut = setTimeout(updateClock, 1000)
+        } else  {
+            timeDays.textContent = '00'
+            timeHours.textContent = '00'
+            timeMinutes.textContent = '00'
+            timeSeconds.textContent = '00'
         }
+
     }
     updateClock()
 }
