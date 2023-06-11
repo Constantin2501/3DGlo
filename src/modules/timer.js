@@ -21,20 +21,24 @@ const timer = (deadline) => {
     const addZero = (num) => {
         if (num <= 9) {
             return '0' + num
-        }
-        return num
+        } 
+
     }
 
     const updateClock = () => {
-        let getTime = getTimeRemaining()
 
-        timeDays.textContent = addZero(getTime.days)
-        timeHours.textContent = addZero(getTime.hourse)
-        timeMinutes.textContent = addZero(getTime.minutes)
-        timeSeconds.textContent = addZero(getTime.seconds)
+        if (getTime.timeRemaining > 0) {
 
-        if(getTime.timeRemaining > 0) {
-            setTimeout(updateClock, 1000)
+            let getTime = getTimeRemaining()
+
+            timeDays.textContent = addZero(getTime.days)
+            timeHours.textContent = addZero(getTime.hourse)
+            timeMinutes.textContent = addZero(getTime.minutes)
+            timeSeconds.textContent = addZero(getTime.seconds)
+
+            if(getTime.timeRemaining > 0) {
+                setTimeout(updateClock, 1000)
+            }
         }
     }
     updateClock()
