@@ -24,7 +24,7 @@ const slider = () => {
         
         for (let i = 0; i < slideTotal; i++) {
             // newDot.сlassList.add('dot')
-            dotList.append(newDot)
+            dotList.append(newDot.cloneNode(newDot))
         }
         console.log(dotList);
     }
