@@ -1,3 +1,5 @@
+import { animate } from "./helper"
+
 const modal = () => {
     const modal = document.querySelector('.popup')
     const buttons = document.querySelectorAll('.popup-btn')
@@ -6,10 +8,15 @@ const modal = () => {
        btn.addEventListener('click', () => {
         modal.style.display = 'block'
         if (screen.width > 768) {
-            modal.animate([
-                {opacity: 0},
-                {opacity: 1},
-            ], 1000)
+            animate({
+                duration: 1000,
+                timing(timeFraction) {
+                  return timeFraction;
+                },
+                draw(progress) {
+                    modal.style.opacity = progress * 1
+                }
+              });
         }
         
        })
